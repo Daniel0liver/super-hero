@@ -1,24 +1,28 @@
-import { useRef } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 
-type SubmitProps = { name: string };
+export type SubmitProps = { name: string };
 type FormProps = {
   onSubmit: (props: SubmitProps) => void;
 };
 
 const Form = ({ onSubmit }: FormProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [name, setName] = useState('');
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const value = inputRef.current?.value ?? '';
-    onSubmit({ name: value });
+    onSubmit({ name });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input ref={inputRef} id="name" type="text" />
-      <button type="submit">Entrar</button>
+      <input id="name" type="text" onChange={handleChangeInput} />
+      <button type="submit" disabled={name.length === 0}>
+        Entrar
+      </button>
     </form>
   );
 };
