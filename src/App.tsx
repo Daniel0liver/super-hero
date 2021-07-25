@@ -1,10 +1,7 @@
+import Routes from 'routes';
+
 const App = () => {
-  return (
-    <div className="App">
-      <h1>Super hero app</h1>
-      <p>Simple app to list your favorites heros</p>
-    </div>
-  );
+  return <Routes />;
 };
 
 export default App;
