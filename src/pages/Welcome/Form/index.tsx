@@ -1,4 +1,5 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
+import * as S from './styles';
 
 export type SubmitProps = { name: string };
 type FormProps = {
@@ -18,12 +19,12 @@ const Form = ({ onSubmit }: FormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input id="name" type="text" onChange={handleChangeInput} />
-      <button type="submit" disabled={name.length === 0}>
+    <S.Form onSubmit={handleSubmit}>
+      <S.Input id="name" type="text" onChange={handleChangeInput} />
+      <S.Button type="submit" disabled={name.length === 0}>
         Entrar
-      </button>
-    </form>
+      </S.Button>
+    </S.Form>
   );
 };
 
